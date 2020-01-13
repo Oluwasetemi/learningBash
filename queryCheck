@@ -1,0 +1,20 @@
+#!/usr/bin/env node
+
+const {parse} = require('querystring')
+
+const [queryString, queryStringPropName, queryStringExpected] = process.argv.slice(2)
+
+if (!queryString || !queryStringPropName || !queryStringExpected) {
+  process.stderr.write(`ERRPR! must pass 3 args \n`);
+  process.exit(1);
+}
+
+let actual = parse(queryString)[queryStringPropName]
+
+if (actual === queryStringExpected) {
+  process.stdin.write(`${actual} is equal to ${queryStringExpected}\n`)
+  process.exit(0)
+} else {
+  process.stderr.write(`🔴 ${actual} is not equal to ${queryStringExpected}\n`)
+  process.exit(1)
+}

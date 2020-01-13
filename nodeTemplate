@@ -1,0 +1,4 @@
+#!/usr/bin/env node
+
+process.stdin.write('Hello, World\n');
+process.exit(0);
