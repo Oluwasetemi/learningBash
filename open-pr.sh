@@ -57,14 +57,14 @@ check_is_set "title" $title
 data=$(cat <<-END
 {
   "title": "$title",
-  "base": "master",
+  "base": "main",
   "head": "$current_branch",
   "body": "$@"
 }
 END
 )
 
-status_code=$(curl -s --user "$username:$password" -X POST "https://api.github.com/repos/Oluwasetemi/sandbox/pulls" -d "$data" -w %{http_code} -o /dev/null)
+status_code=$(curl -s --user "$username:$password" -X POST "https://github.com/Oluwasetemi/learningBash/pulls" -d "$data" -w %{http_code} -o /dev/null)
 
 if [[ $status_code == "201" ]]; then
   echo "completed"
