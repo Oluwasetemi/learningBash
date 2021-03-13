@@ -1,0 +1,23 @@
+#!/usr/bin/env node
+// const { exec, execSync } = require('child_process');
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
+
+process.stdin.write('Working with exec \n');
+
+(async () => {
+	const { stderr: ste, stdout: std } = await exec(
+		`"./case.sh" ${process.argv[2]}`,
+	);
+	console.log(std, ste);
+	// Double quotes are used so that the space in the path is not interpreted as
+	// a delimiter of multiple arguments.
+
+	// exec('echo "The \\$HOME variable is $HOME"', (err, stdout, stderr) => {
+	// 	console.log({ err, stderr, stdout });
+	// 	if (err) process.exit(127);
+	// 	if (stderr) process.exit(1);
+	// 	if (stdout) console.log(stdout);
+	// });
+	// The $HOME variable is escaped in the first instance, but not in the second.
+})();

@@ -3,22 +3,24 @@
 const { parse } = require('querystring');
 
 const [
-  queryString,
-  queryStringPropName,
-  queryStringExpected
+	queryString,
+	queryStringPropName,
+	queryStringExpected,
 ] = process.argv.slice(2);
 
+// console.log(queryString, queryStringPropName, queryStringExpected);
 if (!queryString || !queryStringPropName || !queryStringExpected) {
-  process.stderr.write(`ERR0R! must pass 3 args \n`);
-  process.exit(1);
+	process.stderr.write(`ERR0R! must pass 3 args \n`);
+	process.exit(1);
 }
 
 const actual = parse(queryString)[queryStringPropName];
+// console.log(parse(queryString));
 
 if (actual === queryStringExpected) {
-  process.stdin.write(`${actual} is equal to ${queryStringExpected}\n`);
-  process.exit(0);
+	process.stdin.write(`${actual} is equal to ${queryStringExpected}\n`);
+	process.exit(0);
 } else {
-  process.stderr.write(`🔴 ${actual} is not equal to ${queryStringExpected}\n`);
-  process.exit(1);
+	process.stderr.write(`🔴 ${actual} is not equal to ${queryStringExpected}\n`);
+	process.exit(1);
 }

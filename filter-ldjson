@@ -3,36 +3,36 @@
 const { Transform } = require('stream');
 
 class FilterLogs extends Transform {
-  _transform(chunk, encoding, callback) {
-    try {
-      const jsonChunk = chunk
-        .toString()
-        .split('\n')
-        .reduce((aggr, line) => {
-          if (line) {
-            const json = JSON.parse(line);
-            if (json.level === 'error') {
-              aggr.push(JSON.stringify(json));
-            }
-          }
-          return aggr;
-        }, [])
-        .join('\n');
+	_transform(chunk, encoding, callback) {
+		try {
+			const jsonChunk = chunk
+				.toString()
+				.split('\n')
+				.reduce((aggr, line) => {
+					if (line) {
+						const json = JSON.parse(line);
+						if (json.level === 'error') {
+							aggr.push(JSON.stringify(json));
+						}
+					}
+					return aggr;
+				}, [])
+				.join('\n');
 
-      if (jsonChunk) {
-        this.push(`${jsonChunk}\n`);
-      }
+			if (jsonChunk) {
+				this.push(`${jsonChunk}\n`);
+			}
 
-      callback();
-    } catch (error) {
-      callback(error);
-    }
-  }
+			callback();
+		} catch (error) {
+			callback(error);
+		}
+	}
 }
 
 process.on('uncaughtException', error => {
-  process.stderr.write(`UncaughtException Error ${error.message}`);
-  process.exit(1);
+	process.stderr.write(`UncaughtException Error ${error.message}`);
+	process.exit(1);
 });
 
 process.stdin.pipe(new FilterLogs()).pipe(process.stdout);
