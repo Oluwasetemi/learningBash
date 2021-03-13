@@ -1,0 +1,13 @@
+#!/usr/bin/env node
+const { execFile } = require('child_process');
+
+process.stdin.write('Working with execFile abortController \n');
+
+const controller = new AbortController();
+const { signal } = controller;
+const child = execFile('node', ['--version'], { signal }, error => {
+	console.log(error); // an AbortError
+	console.log(signal); // a signal
+});
+console.log(child.stdout);
+// controller.abort();
