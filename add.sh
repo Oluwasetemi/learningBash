@@ -14,3 +14,4 @@ answer=$(echo $(( x % y )))
 echo "$x mod $y leaves a remainder of : $answer"
 
 echo $0
+echo $1, $2
