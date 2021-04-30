@@ -12,5 +12,5 @@ check_status() {
     fi
 }
 
-check_status https://example.org
-check_status https://example.org/404
+check_status https://www.chooselifewellness.co
+check_status https://api.chooselifewellness.co/graphql
