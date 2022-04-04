@@ -1,0 +1,23 @@
+{
+  "name": "learningbash",
+  "version": "0.0.1",
+  "description": "Points: 17",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Oluwasetemi/learningBash.git"
+  },
+  "keywords": [],
+  "author": "Oluwasetemi Ojo <setemiojo@gmail.com> (https://oluwasetemi.dev/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Oluwasetemi/learningBash/issues"
+  },
+  "homepage": "https://github.com/Oluwasetemi/learningBash#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}
