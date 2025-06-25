@@ -1,5 +1,3 @@
-
-
 #!/bin/bash
 # This is get-tester-address.sh
 #
@@ -14,32 +12,33 @@ bash.' && exit 2)
 # remove candidates.)
 #
 wholist=(
-     'Bob Smith <bob@example.com>'
-     'Jane L. Williams <setemiojo@gmail.com>'
-     'Eric S. Raymond <esr@example.com>'
-     'Larry Wall <wall@example.com>'
-     'Linus Torvalds <setemiojo@gmail.com>'
-   )
+   'Bob Smith <bob@example.com>'
+   'Jane L. Williams <setemiojo@gmail.com>'
+   'Eric S. Raymond <esr@example.com>'
+   'Larry Wall <wall@example.com>'
+   'Linus Torvalds <setemiojo@gmail.com>'
+)
 #
 # Count the number of possible testers.
 # (Loop until we find an empty string.)
 #
 count=0
-while [ "x${wholist[count]}" != "x" ]
-do
-   count=$(( $count + 1 ))
+while [ "x${wholist[count]}" != "x" ]; do
+   count=$(($count + 1))
 done
-# echo $count
+echo $count
 
 #
 # Now we calculate whose turn it is.
 #
-week=`date '+%W'`    	# The week of the year (0..53).
-week=${week#0}       	# Remove possible leading zero.
+week=$(date '+%W') # The week of the year (0..53).
+week=${week#0}     # Remove possible leading zero.
+echo $week
 
-let "index = $week % $count"   # week modulo count = the lucky person
+index=$((week % count)) # week modulo count = the lucky person
+
 # echo $index
 
-email=${wholist[index]}     # Get the lucky person's e-mail address.
+email=${wholist[index]} # Get the lucky person's e-mail address.
 
-echo $email     	# Output the person's e-mail address.
+echo $email # Output the person's e-mail address.
