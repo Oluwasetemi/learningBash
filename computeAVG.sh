@@ -3,10 +3,15 @@
 #Given n  integers, compute their average correct to three decimal places
 #code
 read -p '>' n
-set sum = 0
-for x in {1..10}; do
-    ((sum += x ))
+echo $n
+
+# Read n integers
+sum=0
+for ((i=1; i<=n; i++)); do
+    read -p '' num
+    sum=$((sum + num))
 done
-set avg = 0
-avg = $((sum / 10))
-printf "%.2f\n" $sum
+
+# Calculate average with 3 decimal places
+avg=$(echo "scale=3; $sum / $n" | bc -l)
+printf "%.3f\n" "$avg"

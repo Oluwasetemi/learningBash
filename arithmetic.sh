@@ -5,7 +5,8 @@
 # bc or expr
 read -p '' exp
 
-a=`echo $exp | bc -l`
-a_rounded=`printf "%.3f" $a`
+a=$(echo "scale=3; $exp" | bc -l)
+a_rounded=$(printf "%.3f" "$a")
 
 echo "$a_rounded"
+echo $a
